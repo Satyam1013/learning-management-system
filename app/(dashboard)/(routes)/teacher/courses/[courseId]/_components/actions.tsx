@@ -8,21 +8,17 @@ import { useRouter } from "next/navigation";
 
 import { Button } from "@/components/ui/button";
 import { ConfirmModal } from "@/components/modals/confirm-modal";
-// import { useConfettiStore } from "@/hooks/use-confetti-store";
+import { useConfettiStore } from "@/hooks/use-confetti-store";
 
 interface ActionsProps {
   disabled: boolean;
   courseId: string;
   isPublished: boolean;
-};
+}
 
-export const Actions = ({
-  disabled,
-  courseId,
-  isPublished
-}: ActionsProps) => {
+export const Actions = ({ disabled, courseId, isPublished }: ActionsProps) => {
   const router = useRouter();
-//   const confetti = useConfettiStore();
+  const confetti = useConfettiStore();
   const [isLoading, setIsLoading] = useState(false);
 
   const onClick = async () => {
@@ -35,7 +31,7 @@ export const Actions = ({
       } else {
         await axios.patch(`/api/courses/${courseId}/publish`);
         toast.success("Course published");
-        // confetti.onOpen();
+        confetti.onOpen();
       }
 
       router.refresh();
@@ -44,8 +40,8 @@ export const Actions = ({
     } finally {
       setIsLoading(false);
     }
-  }
-  
+  };
+
   const onDelete = async () => {
     try {
       setIsLoading(true);
@@ -60,7 +56,7 @@ export const Actions = ({
     } finally {
       setIsLoading(false);
     }
-  }
+  };
 
   return (
     <div className="flex items-center gap-x-2">
@@ -78,5 +74,5 @@ export const Actions = ({
         </Button>
       </ConfirmModal>
     </div>
-  )
-}
+  );
+};

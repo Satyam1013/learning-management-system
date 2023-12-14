@@ -124,7 +124,7 @@ const ChapterIdPage = async ({
         </div>
       </div>
     </>
-  )
+  );
 };
 
 export default ChapterIdPage;

@@ -14,7 +14,7 @@ async function main() {
       { name: "Filming" },
     ];
 
-    // Iterate through categories and perform upsert
+  // Iterate through categories and perform upsert
     await Promise.all(
       categories.map(async (category) => {
         await database.category.upsert({
